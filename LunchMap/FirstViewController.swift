@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  MapViewController.swift
 //  LunchMap
 //
 //  Created by popota on 2016/11/01.
@@ -10,11 +10,13 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
     var locationManager: CLLocationManager!
+    
+    var newLocationAnnotation:MKPointAnnotation? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +43,8 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
      */
     private func setUpMapSettings() {
         
+        mapView.userLocation.title = "現在位置を登録する"
+        
         let coodinate = mapView.userLocation.coordinate
         
         let span = MKCoordinateSpanMake(0.01, 0.01)
@@ -52,7 +56,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         mapView.setUserTrackingMode(.followWithHeading, animated: true)
         
         // 長押しのUIGestureRecognizerを生成
-        let longPressGesture: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(FirstViewController.recognizeLongPress(sender:)))
+        let longPressGesture: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(MapViewController.recognizeLongPress(sender:)))
         
         mapView.addGestureRecognizer(longPressGesture)
         
@@ -77,6 +81,10 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         if sender.state != .began {
             return
         }
+        if let lastAnnotaion = newLocationAnnotation {
+            // 既にピンがある場合は取り除く
+            mapView.removeAnnotation(lastAnnotaion)
+        }
         
         // 長押しした地点の座標を取得
         let location:CGPoint = sender.location(in: mapView)
@@ -87,8 +95,15 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         newPin.coordinate = mapView.convert(location, toCoordinateFrom: mapView)
         newPin.title = "この地点を登録する"
         
+        // ピンを保持
+        newLocationAnnotation = newPin
+        
         // 地図にピンをぶっ刺す
         mapView.addAnnotation(newPin)
+        
+        // ピンにフォーカスを当てる
+        mapView.setCenter(newPin.coordinate, animated: true)
+    
     }
     
     // MARK: - CLLocationManagerDelegate Method
@@ -104,23 +119,40 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
     // MARK: - MKMapViewDelegate Method
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
+        var newAnnotaionView:MKAnnotationView
+        var newAnnotaionViewIdentifier:String
+        
         if let _ = annotation as? MKUserLocation {
-            // 現在地を表示する場合は何もしない
-            return nil
+            // 現在地を表示する場合
+            newAnnotaionViewIdentifier = "UserLocationIdentifier"
+            newAnnotaionView = MKAnnotationView(annotation: annotation, reuseIdentifier:newAnnotaionViewIdentifier)
+            newAnnotaionView.image = UIImage(named: "ic_my_location")
+            
+        } else {
+            
+            newAnnotaionViewIdentifier = "NewPinAnnotationIdentfier"
+            newAnnotaionView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: newAnnotaionViewIdentifier)
+            (newAnnotaionView as! MKPinAnnotationView).animatesDrop = true
         }
         
-        let newPinIdentifier = "NewPinAnnotationIdentfier"
+        newAnnotaionView.canShowCallout = true
+        newAnnotaionView.annotation = annotation
         
-        let newPinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: newPinIdentifier)
+        let registerButton: UIButton = UIButton(type: .contactAdd)
+        registerButton.setImage(UIImage(named: "ic_local_dining"), for: .normal)
+        newAnnotaionView.rightCalloutAccessoryView = registerButton
         
-        newPinView.animatesDrop = true
-        newPinView.canShowCallout = true
-        newPinView.annotation = annotation
+        return newAnnotaionView
         
-        let registerButton: UIButton = UIButton(type: .detailDisclosure)
-        newPinView.rightCalloutAccessoryView = registerButton
+    }
+    
+    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
         
-        return newPinView
+        if let _ = newLocationAnnotation {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                mapView.selectAnnotation(self.newLocationAnnotation!, animated: true)
+            }
+        }
         
     }
 }

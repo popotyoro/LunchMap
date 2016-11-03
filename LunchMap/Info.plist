@@ -43,10 +43,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string></string>
-		<string></string>
-	</array>
+	<array/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>うーちゃん</string>
 </dict>
