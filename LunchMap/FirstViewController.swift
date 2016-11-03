@@ -85,7 +85,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         let newPin = MKPointAnnotation()
         
         newPin.coordinate = mapView.convert(location, toCoordinateFrom: mapView)
-        newPin.title = "新しい地点"
+        newPin.title = "この地点を登録する"
         
         // 地図にピンをぶっ刺す
         mapView.addAnnotation(newPin)
@@ -116,6 +116,9 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         newPinView.animatesDrop = true
         newPinView.canShowCallout = true
         newPinView.annotation = annotation
+        
+        let registerButton: UIButton = UIButton(type: .detailDisclosure)
+        newPinView.rightCalloutAccessoryView = registerButton
         
         return newPinView
         
