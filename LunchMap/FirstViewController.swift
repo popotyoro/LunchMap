@@ -33,6 +33,12 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
     }
     
     
+    // MARK: - Private Method
+    /**
+     ## 地図の設定を行う
+     * coordinate   : UserLocation
+     * span         : 0.01 0.01
+     */
     private func setUpMapSettings() {
         
         let coodinate = mapView.userLocation.coordinate
@@ -52,6 +58,9 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         
     }
     
+    /**
+     ## 現在地の情報を使用開始
+     */
     private func startUpUserLocation() {
         
         if CLLocationManager.locationServicesEnabled() {
@@ -61,6 +70,7 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         }
     }
     
+    // MARK: - GestureRecognizer Method
     func recognizeLongPress(sender: UILongPressGestureRecognizer) {
         
         // 長押しの最中に何度もピンを生成しないようにする
@@ -81,15 +91,17 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         mapView.addAnnotation(newPin)
     }
     
+    // MARK: - CLLocationManagerDelegate Method
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .notDetermined:
+            // LocationServiceの使用許可を得る
             manager.requestWhenInUseAuthorization()
         default: break
         }
     }
     
-    // MARK: - MKmapViewDelegate
+    // MARK: - MKMapViewDelegate Method
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         if let _ = annotation as? MKUserLocation {
@@ -102,16 +114,11 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         let newPinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: newPinIdentifier)
         
         newPinView.animatesDrop = true
-        
         newPinView.canShowCallout = true
-        
         newPinView.annotation = annotation
         
         return newPinView
         
     }
-    
-
-
 }
 
