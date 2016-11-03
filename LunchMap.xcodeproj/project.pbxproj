@@ -10,7 +10,7 @@
 		2779C0B8E28287C8003B242D /* libPods-LunchMap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D161D08D84B18866CE22F5 /* libPods-LunchMap.a */; };
 		66529D80FBFAF949276D5CBB /* libPods-LunchMapUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4475576B921141103E2B095 /* libPods-LunchMapUITests.a */; };
 		C474C8A21DC8DA3300AEC1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474C8A11DC8DA3300AEC1D9 /* AppDelegate.swift */; };
-		C474C8A41DC8DA3300AEC1D9 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474C8A31DC8DA3300AEC1D9 /* FirstViewController.swift */; };
+		C474C8A41DC8DA3300AEC1D9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474C8A31DC8DA3300AEC1D9 /* MapViewController.swift */; };
 		C474C8A61DC8DA3300AEC1D9 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474C8A51DC8DA3300AEC1D9 /* SecondViewController.swift */; };
 		C474C8A91DC8DA3300AEC1D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C474C8A71DC8DA3300AEC1D9 /* Main.storyboard */; };
 		C474C8AB1DC8DA3300AEC1D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C474C8AA1DC8DA3300AEC1D9 /* Assets.xcassets */; };
@@ -46,7 +46,7 @@
 		A5D161D08D84B18866CE22F5 /* libPods-LunchMap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LunchMap.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C474C89E1DC8DA3300AEC1D9 /* LunchMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LunchMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C474C8A11DC8DA3300AEC1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C474C8A31DC8DA3300AEC1D9 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		C474C8A31DC8DA3300AEC1D9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C474C8A51DC8DA3300AEC1D9 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		C474C8A81DC8DA3300AEC1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C474C8AA1DC8DA3300AEC1D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				C474C8A11DC8DA3300AEC1D9 /* AppDelegate.swift */,
-				C474C8A31DC8DA3300AEC1D9 /* FirstViewController.swift */,
+				C474C8A31DC8DA3300AEC1D9 /* MapViewController.swift */,
 				C474C8A51DC8DA3300AEC1D9 /* SecondViewController.swift */,
 				C474C8A71DC8DA3300AEC1D9 /* Main.storyboard */,
 				C474C8AA1DC8DA3300AEC1D9 /* Assets.xcassets */,
@@ -458,7 +458,7 @@
 			files = (
 				C474C8A61DC8DA3300AEC1D9 /* SecondViewController.swift in Sources */,
 				C474C8A21DC8DA3300AEC1D9 /* AppDelegate.swift in Sources */,
-				C474C8A41DC8DA3300AEC1D9 /* FirstViewController.swift in Sources */,
+				C474C8A41DC8DA3300AEC1D9 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
