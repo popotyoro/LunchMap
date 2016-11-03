@@ -25,7 +25,6 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
         // 地図設定
         setUpMapSettings()
         
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,8 +59,6 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
             locationManager.delegate = self
             locationManager.startUpdatingLocation()
         }
-        
-        
     }
     
     func recognizeLongPress(sender: UILongPressGestureRecognizer) {
@@ -90,6 +87,28 @@ class FirstViewController: UIViewController, CLLocationManagerDelegate, MKMapVie
             manager.requestWhenInUseAuthorization()
         default: break
         }
+    }
+    
+    // MARK: - MKmapViewDelegate
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if let _ = annotation as? MKUserLocation {
+            // 現在地を表示する場合は何もしない
+            return nil
+        }
+        
+        let newPinIdentifier = "NewPinAnnotationIdentfier"
+        
+        let newPinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: newPinIdentifier)
+        
+        newPinView.animatesDrop = true
+        
+        newPinView.canShowCallout = true
+        
+        newPinView.annotation = annotation
+        
+        return newPinView
+        
     }
     
 
