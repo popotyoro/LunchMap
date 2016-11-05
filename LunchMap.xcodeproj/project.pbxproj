@@ -17,6 +17,9 @@
 		C474C8AE1DC8DA3300AEC1D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C474C8AC1DC8DA3300AEC1D9 /* LaunchScreen.storyboard */; };
 		C474C8B91DC8DA3300AEC1D9 /* LunchMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474C8B81DC8DA3300AEC1D9 /* LunchMapTests.swift */; };
 		C474C8C41DC8DA3300AEC1D9 /* LunchMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C474C8C31DC8DA3300AEC1D9 /* LunchMapUITests.swift */; };
+		C482BB681DCD99940063DECA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C482BB671DCD99940063DECA /* GoogleService-Info.plist */; };
+		C482BB691DCD99940063DECA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C482BB671DCD99940063DECA /* GoogleService-Info.plist */; };
+		C482BB6A1DCD99940063DECA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C482BB671DCD99940063DECA /* GoogleService-Info.plist */; };
 		C48D79C21DC8E51000637531 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48D79C11DC8E51000637531 /* MapKit.framework */; };
 		C6A45D246EAC6EF8421AE67C /* libPods-LunchMapTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCADBBD6ED8C154720BE4A /* libPods-LunchMapTests.a */; };
 /* End PBXBuildFile section */
@@ -58,6 +61,7 @@
 		C474C8BF1DC8DA3300AEC1D9 /* LunchMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LunchMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C474C8C31DC8DA3300AEC1D9 /* LunchMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchMapUITests.swift; sourceTree = "<group>"; };
 		C474C8C51DC8DA3300AEC1D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C482BB671DCD99940063DECA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C48D79C11DC8E51000637531 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D4475576B921141103E2B095 /* libPods-LunchMapUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LunchMapUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F04937705393C20F2A9B9A96 /* Pods-LunchMapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LunchMapTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LunchMapTests/Pods-LunchMapTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 				C474C8AA1DC8DA3300AEC1D9 /* Assets.xcassets */,
 				C474C8AC1DC8DA3300AEC1D9 /* LaunchScreen.storyboard */,
 				C474C8AF1DC8DA3300AEC1D9 /* Info.plist */,
+				C482BB671DCD99940063DECA /* GoogleService-Info.plist */,
 			);
 			path = LunchMap;
 			sourceTree = "<group>";
@@ -292,6 +297,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C474C8AE1DC8DA3300AEC1D9 /* LaunchScreen.storyboard in Resources */,
+				C482BB681DCD99940063DECA /* GoogleService-Info.plist in Resources */,
 				C474C8AB1DC8DA3300AEC1D9 /* Assets.xcassets in Resources */,
 				C474C8A91DC8DA3300AEC1D9 /* Main.storyboard in Resources */,
 			);
@@ -301,6 +307,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C482BB691DCD99940063DECA /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +315,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C482BB6A1DCD99940063DECA /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

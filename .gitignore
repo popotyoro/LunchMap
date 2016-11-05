@@ -1,2 +1,3 @@
 *.xcworkspace
-GoogleService-Info.plist
+LunchMap/GoogleService-Info.plist
+Pods/
