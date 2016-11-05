@@ -4,6 +4,8 @@
 # use_frameworks!
 
 target 'LunchMap' do
+    pod 'Firebase/Core'
+    pod 'Firebase/Database'
 
 end
 

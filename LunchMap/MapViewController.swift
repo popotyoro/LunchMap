@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import FirebaseDatabase
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
@@ -140,6 +141,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         let registerButton: UIButton = UIButton(type: .contactAdd)
         registerButton.setImage(UIImage(named: "ic_local_dining"), for: .normal)
+        registerButton.addTarget(self, action: #selector(MapViewController.onClickMyButton(sender:)), for: .touchUpInside)
         newAnnotaionView.rightCalloutAccessoryView = registerButton
         
         return newAnnotaionView
@@ -154,6 +156,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             }
         }
         
+    }
+    
+    // MARK: UIButton Method
+    internal func onClickMyButton(sender:UIButton) {
+        // FirebaseにLocationを登録する
+        // データベースへの参照
+        let rootRef = FIRDatabase.database().reference()
+        let coordinateRef = rootRef.child("location").child("coordinate")
+        coordinateRef.child("latitude").setValue(newLocationAnnotation?.coordinate.latitude)
+        coordinateRef.child("longitude").setValue(newLocationAnnotation?.coordinate.longitude)
+
     }
 }
 
