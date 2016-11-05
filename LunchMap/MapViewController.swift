@@ -123,25 +123,28 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         var newAnnotaionView:MKAnnotationView
         var newAnnotaionViewIdentifier:String
         
+        let registerButton: UIButton = UIButton(type: .contactAdd)
+        registerButton.setImage(UIImage(named: "ic_local_dining"), for: .normal)
+        
         if let _ = annotation as? MKUserLocation {
             // 現在地を表示する場合
             newAnnotaionViewIdentifier = "UserLocationIdentifier"
             newAnnotaionView = MKAnnotationView(annotation: annotation, reuseIdentifier:newAnnotaionViewIdentifier)
             newAnnotaionView.image = UIImage(named: "ic_my_location")
             
+            registerButton.addTarget(self, action: #selector(MapViewController.onClickUserLocationButton(sender:)), for: .touchUpInside)
         } else {
             
             newAnnotaionViewIdentifier = "NewPinAnnotationIdentfier"
             newAnnotaionView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: newAnnotaionViewIdentifier)
             (newAnnotaionView as! MKPinAnnotationView).animatesDrop = true
+            
+            registerButton.addTarget(self, action: #selector(MapViewController.onClickPinLocationButton(sender:)), for: .touchUpInside)
         }
         
         newAnnotaionView.canShowCallout = true
         newAnnotaionView.annotation = annotation
         
-        let registerButton: UIButton = UIButton(type: .contactAdd)
-        registerButton.setImage(UIImage(named: "ic_local_dining"), for: .normal)
-        registerButton.addTarget(self, action: #selector(MapViewController.onClickMyButton(sender:)), for: .touchUpInside)
         newAnnotaionView.rightCalloutAccessoryView = registerButton
         
         return newAnnotaionView
@@ -159,7 +162,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     // MARK: UIButton Method
-    internal func onClickMyButton(sender:UIButton) {
+    internal func onClickPinLocationButton(sender:UIButton) {
         // FirebaseにLocationを登録する
         // データベースへの参照
         let rootRef = FIRDatabase.database().reference()
@@ -167,6 +170,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         coordinateRef.child("latitude").setValue(newLocationAnnotation?.coordinate.latitude)
         coordinateRef.child("longitude").setValue(newLocationAnnotation?.coordinate.longitude)
 
+    }
+    
+    internal func onClickUserLocationButton(sender:UIButton) {
+        // FirebaseにLocationを登録する
+        // データベースへの参照
+        let rootRef = FIRDatabase.database().reference()
+        let coordinateRef = rootRef.child("location").child("coordinate")
+        coordinateRef.child("latitude").setValue(mapView.userLocation.coordinate.latitude)
+        coordinateRef.child("longitude").setValue(mapView.userLocation.coordinate.longitude)
     }
 }
 
